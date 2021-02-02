@@ -190,4 +190,4 @@ CREATE INDEX ON :Relation(name)
  
 # 运行过程中出现问题 
 ## 导入csv文件到neo4j数据库时出现错误graph.db already contains data, cannot do import here
-删除data/databases目录下graph.db文件夹
+删除data/databases目录下graph.db文件夹，删除之后重新启动服务重设用户名和密码
