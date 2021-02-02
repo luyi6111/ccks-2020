@@ -166,3 +166,27 @@ CREATE INDEX ON :Relation(name)
     2. 模型训练 manage.py
     3. 组合以上模型得到问答结果 qa.py
  
+ ### 执行data.py之后生成的相关数据文件
+ - data_prepare.py
+    word2id.json 训练集中问题和答案中涉及的所有字符形成的字典
+    q_entity2id.json 把训练集中sparql中的实体提取形成字典
+    a_entity2id.json 把训练集中答案中的实体提取形成字典
+    data_csv 把训练集数据进行格式转换->五列分别为：问题字符串，问题实体，问题属性，答案实体，答案属性
+ - kb_data_prepare.py
+    entity2id.json / id2entity.pkl 实体（这里面包含了属性）和id之间的映射
+    relation2id.json / id2relation.pkl 关系和id之间的映射
+    mention2ent.json / ent2mention.json 实体和mention之间的映射
+    entity2type.json 实体及其类型映射
+    entity2attr.json 实体及其属性映射
+    all_attrs.json 所有属性
+    entity2count.json 对所有实体计数（这里面包含了属性）
+    relation2count.json 对所有关系计数
+    mention2count.json 对所有mention计数
+    lac_custom_dict.txt 由50万高频mention、50万高频实体和训练集中的实体（长度>=3）组成的词典
+    lac_attr_custom_dict.txt 由所有属性（长度>=2）组成字典
+    graph_entity.csv 由entity2id形成的实体文件->三列分别为：实体id，实体字符串，'Entity'(最后一列内容固定)
+    graph_relation.csv 由从知识图谱源数据中的三元组构成->四列分别为：头实体字符串，尾实体字符串，'Relation'(第三列内容固定)，关系字符串
+ 
+ 
+# 运行过程中出现问题 
+## 导入csv文件到neo4j数据库时出现错误graph.db already contains data, cannot do import here
